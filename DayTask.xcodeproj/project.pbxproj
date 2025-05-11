@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1435F91B2DCA062200FC012D /* FontSizeWithWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F91A2DCA062200FC012D /* FontSizeWithWeight.swift */; };
+		1435F91D2DCA067500FC012D /* FontWithLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F91C2DCA067500FC012D /* FontWithLineHeight.swift */; };
+		1435F91F2DCA24BB00FC012D /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F91E2DCA24BB00FC012D /* Signup.swift */; };
+		1435F9212DCA406300FC012D /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9202DCA406300FC012D /* CheckBoxView.swift */; };
+		1435F9232DCA42D800FC012D /* RadioBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9222DCA42D800FC012D /* RadioBoxView.swift */; };
+		1435F9252DCA5A7800FC012D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9242DCA5A7800FC012D /* HomeView.swift */; };
+		1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471685A2DCCA06B00C94582 /* FontFamily.swift */; };
 		14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */; };
 		14A75BFA2DC8CCA50014CB23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75BF92DC8CCA50014CB23 /* ContentView.swift */; };
 		14A75BFC2DC8CCA80014CB23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A75BFB2DC8CCA80014CB23 /* Assets.xcassets */; };
@@ -16,12 +23,18 @@
 		14A75C0C2DC8E3380014CB23 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14A75C0B2DC8E3380014CB23 /* Inter-Bold.ttf */; };
 		14A75C0F2DC8E6EC0014CB23 /* PilatExtended-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14A75C0E2DC8E6EC0014CB23 /* PilatExtended-Bold.ttf */; };
 		14A75C122DC902C80014CB23 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C112DC902C80014CB23 /* Logo.swift */; };
-		14A75C142DC90B4D0014CB23 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C132DC90B4D0014CB23 /* SignIn.swift */; };
-		14A75C172DC91B430014CB23 /* TextWithWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C162DC91B430014CB23 /* TextWithWeight.swift */; };
+		14A75C142DC90B4D0014CB23 /* Signin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C132DC90B4D0014CB23 /* Signin.swift */; };
 		14A75C192DC941930014CB23 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C182DC941930014CB23 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1435F91A2DCA062200FC012D /* FontSizeWithWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeWithWeight.swift; sourceTree = "<group>"; };
+		1435F91C2DCA067500FC012D /* FontWithLineHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWithLineHeight.swift; sourceTree = "<group>"; };
+		1435F91E2DCA24BB00FC012D /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		1435F9202DCA406300FC012D /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		1435F9222DCA42D800FC012D /* RadioBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioBoxView.swift; sourceTree = "<group>"; };
+		1435F9242DCA5A7800FC012D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1471685A2DCCA06B00C94582 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
 		14A75BF42DC8CCA50014CB23 /* DayTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskApp.swift; sourceTree = "<group>"; };
 		14A75BF92DC8CCA50014CB23 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,8 +46,7 @@
 		14A75C0D2DC8E3760014CB23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		14A75C0E2DC8E6EC0014CB23 /* PilatExtended-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilatExtended-Bold.ttf"; sourceTree = "<group>"; };
 		14A75C112DC902C80014CB23 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
-		14A75C132DC90B4D0014CB23 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
-		14A75C162DC91B430014CB23 /* TextWithWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithWeight.swift; sourceTree = "<group>"; };
+		14A75C132DC90B4D0014CB23 /* Signin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin.swift; sourceTree = "<group>"; };
 		14A75C182DC941930014CB23 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +89,9 @@
 				14A75C052DC8D4370014CB23 /* Splash.swift */,
 				14A75BFB2DC8CCA80014CB23 /* Assets.xcassets */,
 				14A75BFD2DC8CCA80014CB23 /* Preview Content */,
-				14A75C132DC90B4D0014CB23 /* SignIn.swift */,
+				14A75C132DC90B4D0014CB23 /* Signin.swift */,
+				1435F91E2DCA24BB00FC012D /* Signup.swift */,
+				1435F9242DCA5A7800FC012D /* HomeView.swift */,
 			);
 			path = DayTask;
 			sourceTree = "<group>";
@@ -113,6 +127,8 @@
 			children = (
 				14A75C112DC902C80014CB23 /* Logo.swift */,
 				14A75C182DC941930014CB23 /* ButtonView.swift */,
+				1435F9202DCA406300FC012D /* CheckBoxView.swift */,
+				1435F9222DCA42D800FC012D /* RadioBoxView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -120,7 +136,9 @@
 		14A75C152DC91AEB0014CB23 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				14A75C162DC91B430014CB23 /* TextWithWeight.swift */,
+				1435F91A2DCA062200FC012D /* FontSizeWithWeight.swift */,
+				1471685A2DCCA06B00C94582 /* FontFamily.swift */,
+				1435F91C2DCA067500FC012D /* FontWithLineHeight.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -198,11 +216,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A75C172DC91B430014CB23 /* TextWithWeight.swift in Sources */,
 				14A75BFA2DC8CCA50014CB23 /* ContentView.swift in Sources */,
+				1435F91B2DCA062200FC012D /* FontSizeWithWeight.swift in Sources */,
+				1435F91D2DCA067500FC012D /* FontWithLineHeight.swift in Sources */,
 				14A75C062DC8D4370014CB23 /* Splash.swift in Sources */,
-				14A75C142DC90B4D0014CB23 /* SignIn.swift in Sources */,
+				1435F9212DCA406300FC012D /* CheckBoxView.swift in Sources */,
+				1435F9232DCA42D800FC012D /* RadioBoxView.swift in Sources */,
+				14A75C142DC90B4D0014CB23 /* Signin.swift in Sources */,
+				1435F91F2DCA24BB00FC012D /* Signup.swift in Sources */,
 				14A75C122DC902C80014CB23 /* Logo.swift in Sources */,
+				1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */,
+				1435F9252DCA5A7800FC012D /* HomeView.swift in Sources */,
 				14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */,
 				14A75C192DC941930014CB23 /* ButtonView.swift in Sources */,
 			);

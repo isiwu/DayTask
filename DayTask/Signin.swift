@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignIn: View {
+struct Signin: View {
   @State private var email = ""
   @State private var password = ""
   @State private var showPass = false
@@ -20,14 +20,20 @@ struct SignIn: View {
         Logo()
           .padding(.top)
         
-        TextWithWeight(text: "Welcome Back!", size: 26, weight: 600, color: UIColor.white)
+        Text("Welcome Back!")
+          .fontSizeWithWeight(size: 26, weight: 600)
+          .foregroundStyle(.white)
           .font(.custom("Inter-Bold", size: 59))
           .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(.top, 25)
+          .padding(.bottom)
         
         VStack(spacing: 25) {
           VStack {
             VStack(alignment: .leading) {
-              TextWithWeight(text: "Email Address", size: 18, weight: 400, color: UIColor.daytaskG)
+              Text("Email Address")
+                .fontSizeWithWeight(size: 18, weight: 400)
+                .foregroundStyle(.daytaskG)
               HStack {
                 Image("usertag")
                 TextField("fazzzil72@gmail.com", text: $email)
@@ -42,7 +48,9 @@ struct SignIn: View {
             .padding(.bottom)
             
             VStack(alignment: .leading) {
-              TextWithWeight(text: "Password", size: 18, weight: 400, color: UIColor.daytaskG)
+              Text("Password")
+                .fontSizeWithWeight(size: 18, weight: 400)
+                .foregroundStyle(.daytaskG)
               HStack {
                 Image("lock1")
                 
@@ -53,7 +61,7 @@ struct SignIn: View {
                     .foregroundStyle(.white)
                     .padding(.vertical, 20)
                 } else {
-                  SecureField("pasword", text: $password)
+                  SecureField("Pasword", text: $password)
                     .font(.custom("Inter-Regular", size: 18))
                     .fontWeight(.light)
                     .foregroundStyle(.white)
@@ -77,9 +85,11 @@ struct SignIn: View {
               .background(Color(.daytaskfield))
             }
             
-            TextWithWeight(text: "Forgot Password?", weight: 400, color: UIColor.daytaskG)
+            Text("Forgot Password?")
+              .fontSizeWithWeight(size: 16, weight: 400)
+              .foregroundStyle(.daytaskG)
+              .underline(true, pattern: .solid, color: .daytaskG)
               .frame(maxWidth: .infinity, alignment: .trailing)
-              .underline(false, pattern: .solid, color: .white)
           }
           
           ButtonView(buttonText: "Log In")
@@ -90,7 +100,9 @@ struct SignIn: View {
                 .frame(height: 1)
                 .background(Color.daytaskG)
             }
-            TextWithWeight(text: "Or continue with", size: 16, weight: 500, color: UIColor.daytaskG)
+            Text("Or continue with")
+              .fontSizeWithWeight(size: 16, weight: 500)
+              .foregroundStyle(.daytaskG)
               .frame(width: 160)
             VStack {
               Divider()
@@ -102,7 +114,7 @@ struct SignIn: View {
           VStack {
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
               HStack {
-                Image(systemName: "google")
+                Image("google")
                 Text("Google")
               }
               .foregroundStyle(.white)
@@ -114,10 +126,14 @@ struct SignIn: View {
                 .stroke(.white, lineWidth: 2)
             }
             
-            HStack(spacing: -8) {
-              TextWithWeight(text: "Don’t have an account?", size: 14, weight: 400, color: .daytaskG)
+            HStack(spacing: 2) {
+              Text("Don’t have an account?")
+                .fontSizeWithWeight(size: 14, weight: 400)
+                .foregroundStyle(.daytaskG)
               Button(action: {}) {
-                TextWithWeight(text: "Sign Up", size: 14, weight: 400, color: .dayTaskY)
+                Text("Sign Up")
+                  .fontSizeWithWeight(size: 14, weight: 400)
+                  .foregroundStyle(.dayTaskY)
               }
             }
             .frame(maxWidth: .infinity)
@@ -129,6 +145,6 @@ struct SignIn: View {
   }
 }
 
-#Preview {
-    SignIn()
-}
+//#Preview {
+//    Signin()
+//}

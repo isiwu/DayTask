@@ -15,8 +15,6 @@ struct Logo: View {
         Text("Day")
           .foregroundStyle(.white)
         Text("Task")
-//          .font(.system(size: 16.26))
-//          .fontWeight(.bold)
           .foregroundStyle(.dayTaskY)
       }
       .font(.custom("Pilat Extended", size: 24.3))

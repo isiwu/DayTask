@@ -12,15 +12,14 @@ struct ButtonView: View {
   var body: some View {
     Button(action: {}) {
       Text(buttonText)
+        .font(.custom("Inter-Bold", size: 25))
         .foregroundStyle(.black)
         .fontWeight(.bold)
-        .font(.custom("Inter-Bold", size: 18))
         .padding(.all, 25)
     }
     .frame(maxWidth: .infinity)
     .background(.dayTaskY)
     .clipShape(RoundedRectangle(cornerRadius: 2))
-    .padding(.bottom, 20)
   }
 }
 

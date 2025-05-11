@@ -50,6 +50,7 @@ struct Splash: View {
         .padding(.top)
         
         ButtonView(buttonText: "Let's Start")
+          .padding(.bottom, 30)
       }
       .padding(.horizontal, 35)
     }
