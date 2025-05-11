@@ -25,6 +25,8 @@
 		14A75C122DC902C80014CB23 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C112DC902C80014CB23 /* Logo.swift */; };
 		14A75C142DC90B4D0014CB23 /* Signin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C132DC90B4D0014CB23 /* Signin.swift */; };
 		14A75C192DC941930014CB23 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75C182DC941930014CB23 /* ButtonView.swift */; };
+		14C5F05A2DD0E89B001FB690 /* TaskDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5F0592DD0E89B001FB690 /* TaskDetail.swift */; };
+		14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5F05B2DD0F5B2001FB690 /* CircularProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		14A75C112DC902C80014CB23 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		14A75C132DC90B4D0014CB23 /* Signin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin.swift; sourceTree = "<group>"; };
 		14A75C182DC941930014CB23 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		14C5F0592DD0E89B001FB690 /* TaskDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetail.swift; sourceTree = "<group>"; };
+		14C5F05B2DD0F5B2001FB690 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				14A75C132DC90B4D0014CB23 /* Signin.swift */,
 				1435F91E2DCA24BB00FC012D /* Signup.swift */,
 				1435F9242DCA5A7800FC012D /* HomeView.swift */,
+				14C5F0592DD0E89B001FB690 /* TaskDetail.swift */,
 			);
 			path = DayTask;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				14A75C182DC941930014CB23 /* ButtonView.swift */,
 				1435F9202DCA406300FC012D /* CheckBoxView.swift */,
 				1435F9222DCA42D800FC012D /* RadioBoxView.swift */,
+				14C5F05B2DD0F5B2001FB690 /* CircularProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 				1435F9252DCA5A7800FC012D /* HomeView.swift in Sources */,
 				14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */,
 				14A75C192DC941930014CB23 /* ButtonView.swift in Sources */,
+				14C5F05A2DD0E89B001FB690 /* TaskDetail.swift in Sources */,
+				14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

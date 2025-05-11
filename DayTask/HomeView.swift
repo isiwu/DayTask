@@ -12,97 +12,101 @@ struct HomeView: View {
   var completedTasks: [[String: Any]] = [["task":"Real Estate Website Design", "first":true], ["task":"Finance Mobile App Design", "first": false], ["task": "Wallet Mobile App Design", "first": false]]
   var ongoingProjects: [[String: String]] = [["name": "Mobile App Wireframe", "dueDate": "21 March", "level": "75"], ["name": "Real Estate App Design", "dueDate": "20 June", "level": "60"], ["name": "Dashboard & App Design", "dueDate": "21 March", "level": "50"]]
   var body: some View {
-    ZStack {
-      Color.dayTask
-        .ignoresSafeArea()
-      
-      VStack(spacing: 30) {
-        HStack(alignment: .bottom) {
-          VStack(alignment: .leading, spacing: -1) {
-            Text("Welcome Back!")
-              .fontWeight(.medium)
-  //            .font(.custom("Inter-Bold", size: 11.79))
-              .fontWithLineHeight(size: 11.79, weight: 500, lineHeight: 18.86)
-              .foregroundStyle(.dayTaskY)
-            
-            Text("Fazil Laghari")
-              .fontWeight(.semibold)
-              .font(.custom("PilatExtended-Bold", size: 22.29))
-              .foregroundStyle(.white)
+    NavigationStack {
+      ZStack {
+        Color.dayTask
+          .ignoresSafeArea()
+        
+        VStack(spacing: 30) {
+          HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: -1) {
+              Text("Welcome Back!")
+                .fontWeight(.medium)
+    //            .font(.custom("Inter-Bold", size: 11.79))
+                .fontWithLineHeight(size: 11.79, weight: 500, lineHeight: 18.86)
+                .foregroundStyle(.dayTaskY)
               
-          }
-          
-          Spacer()
-          
-          Image("home-user")
-        }
-        .padding(.top)
-        
-        HStack {
-          HStack {
-            Image("search")
-            TextField("Search", text: $search)
-              .foregroundStyle(.white)
-          }
-          .padding(.vertical)
-          .padding(.horizontal)
-          .background(.daytaskfield)
-          
-          Image("setting")
-//            .padding()
-            .frame(width: 57)
-            .frame(height: 58)
-            .background(.dayTaskY)
-        }
-        
-        VStack {
-          HStack {
-            Text("Completed Tasks")
-              .foregroundStyle(.white)
-              .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+              Text("Fazil Laghari")
+                .fontWeight(.semibold)
+                .font(.custom("PilatExtended-Bold", size: 22.29))
+                .foregroundStyle(.white)
+                
+            }
             
             Spacer()
             
-            Text("See all")
-              .foregroundStyle(.dayTaskY)
-              .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+            Image("home-user")
           }
+          .padding(.top)
           
-          ScrollView(.horizontal, showsIndicators: false) {
+          HStack {
             HStack {
-              ForEach(completedTasks.indices, id: \.self) {index in
-                CompletedTask(task: completedTasks[index]["task"] as! String, first: completedTasks[index]["first"] as! Bool)
-              }
-              .background(.white)
+              Image("search")
+              TextField("Search", text: $search)
+                .foregroundStyle(.white)
             }
+            .padding(.vertical)
+            .padding(.horizontal)
+            .background(.daytaskfield)
+            
+            Image("setting")
+  //            .padding()
+              .frame(width: 57)
+              .frame(height: 58)
+              .background(.dayTaskY)
           }
           
-        }
-        
-        VStack {
-          HStack {
-            Text("Ongoing Projects")
-              .foregroundStyle(.white)
-              .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+          VStack {
+            HStack {
+              Text("Completed Tasks")
+                .foregroundStyle(.white)
+                .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+              
+              Spacer()
+              
+              Text("See all")
+                .foregroundStyle(.dayTaskY)
+                .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+            }
             
-            Spacer()
-            
-            Text("See all")
-              .foregroundStyle(.dayTaskY)
-              .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
-          }
-          
-          ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 15) {
-              ForEach(ongoingProjects.indices, id: \.self) {index in
-                OngoingProject(name: ongoingProjects[index]["name"]!, dueDate: ongoingProjects[index]["dueDate"]!, level: ongoingProjects[index]["level"]!)
+            ScrollView(.horizontal, showsIndicators: false) {
+              HStack {
+                ForEach(completedTasks.indices, id: \.self) {index in
+                  CompletedTask(task: completedTasks[index]["task"] as! String, first: completedTasks[index]["first"] as! Bool)
+                }
+                .background(.white)
               }
             }
+            
           }
           
+          VStack {
+            HStack {
+              Text("Ongoing Projects")
+                .foregroundStyle(.white)
+                .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+              
+              Spacer()
+              
+              Text("See all")
+                .foregroundStyle(.dayTaskY)
+                .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+            }
+            
+            ScrollView(.vertical, showsIndicators: false) {
+              VStack(spacing: 15) {
+                ForEach(ongoingProjects.indices, id: \.self) {index in
+                  NavigationLink(destination: TaskDetail()) {
+                    OngoingProject(name: ongoingProjects[index]["name"]!, dueDate: ongoingProjects[index]["dueDate"]!, level: ongoingProjects[index]["level"]!)
+                  }
+                }
+              }
+            }
+            
+          }
         }
+        .padding(.horizontal)
       }
-      .padding(.horizontal)
     }
   }
 }
@@ -195,29 +199,6 @@ struct OngoingProject: View {
     }
     .padding(.all, 10)
     .background(.daytaskfield)
-  }
-}
-
-struct CircularProgressView: View {
-  let progress: Int
-
-  var body: some View {
-    ZStack {
-      // Background for the progress bar
-      Circle()
-        .stroke(lineWidth: 2)
-        .foregroundColor(.daytaskProgre)
-      
-      Text("\(progress)%")
-        .foregroundStyle(.white)
-
-      // Foreground or the actual progress bar
-      Circle()
-        .trim(from: 0.0, to: CGFloat(progress) / CGFloat(100))
-        .stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-        .foregroundColor(.dayTaskY)
-        .animation(.linear, value: progress)
-    }
   }
 }
 
