@@ -44,6 +44,8 @@ struct MessagesView: View {
       }
      }
      .padding()
+     .navigationTitle("Messages")
+     .navigationBarTitleDisplayMode(.inline)
      .navigationBarBackButtonHidden(true)
      .toolbar(content: {
        ToolbarItem(placement: .topBarLeading) {
@@ -54,14 +56,6 @@ struct MessagesView: View {
              .foregroundStyle(.white)
              .font(.system(size: 24))
          }
-       }
-       
-       ToolbarItem(placement: .navigation) {
-         Text("Messages")
-           .foregroundStyle(.white)
-           .frame(maxWidth: .infinity, alignment: .center)
-           .padding(.leading, 70)
-         
        }
        
        ToolbarItem(placement: .topBarTrailing) {

@@ -13,6 +13,11 @@
 		1435F9212DCA406300FC012D /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9202DCA406300FC012D /* CheckBoxView.swift */; };
 		1435F9232DCA42D800FC012D /* RadioBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9222DCA42D800FC012D /* RadioBoxView.swift */; };
 		1435F9252DCA5A7800FC012D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1435F9242DCA5A7800FC012D /* HomeView.swift */; };
+		1458D8CD2DD5E0FD00CD4A48 /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8CC2DD5E0FD00CD4A48 /* NewTask.swift */; };
+		1458D8CF2DD5E1CD00CD4A48 /* NewTasKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8CE2DD5E1CD00CD4A48 /* NewTasKModel.swift */; };
+		1458D8D12DD6141B00CD4A48 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8D02DD6141B00CD4A48 /* NotificationView.swift */; };
+		1458D8D32DD6175500CD4A48 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8D22DD6175500CD4A48 /* Notification.swift */; };
+		1458D8D52DD617CD00CD4A48 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8D42DD617CD00CD4A48 /* NotificationModel.swift */; };
 		1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471685A2DCCA06B00C94582 /* FontFamily.swift */; };
 		14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */; };
 		14A75BFA2DC8CCA50014CB23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75BF92DC8CCA50014CB23 /* ContentView.swift */; };
@@ -49,6 +54,11 @@
 		1435F9202DCA406300FC012D /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		1435F9222DCA42D800FC012D /* RadioBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioBoxView.swift; sourceTree = "<group>"; };
 		1435F9242DCA5A7800FC012D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1458D8CC2DD5E0FD00CD4A48 /* NewTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTask.swift; sourceTree = "<group>"; };
+		1458D8CE2DD5E1CD00CD4A48 /* NewTasKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTasKModel.swift; sourceTree = "<group>"; };
+		1458D8D02DD6141B00CD4A48 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		1458D8D22DD6175500CD4A48 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		1458D8D42DD617CD00CD4A48 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		1471685A2DCCA06B00C94582 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
 		14A75BF42DC8CCA50014CB23 /* DayTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskApp.swift; sourceTree = "<group>"; };
@@ -126,6 +136,8 @@
 				14C5F0592DD0E89B001FB690 /* TaskDetail.swift */,
 				14AEE5E22DD369A500720572 /* MessageGroups.swift */,
 				14AEE5E62DD37F3600720572 /* Schedule.swift */,
+				1458D8CC2DD5E0FD00CD4A48 /* NewTask.swift */,
+				1458D8D02DD6141B00CD4A48 /* NotificationView.swift */,
 				14AEE5D12DD1EE2100720572 /* MessagesView.swift */,
 				14AEE5DA2DD209E800720572 /* ChatView.swift */,
 			);
@@ -162,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				14A75C112DC902C80014CB23 /* Logo.swift */,
+				1458D8D22DD6175500CD4A48 /* Notification.swift */,
 				14A75C182DC941930014CB23 /* ButtonView.swift */,
 				1435F9202DCA406300FC012D /* CheckBoxView.swift */,
 				1435F9222DCA42D800FC012D /* RadioBoxView.swift */,
@@ -188,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				14AEE5D82DD1FE0400720572 /* Message.swift */,
+				1458D8D42DD617CD00CD4A48 /* NotificationModel.swift */,
+				1458D8CE2DD5E1CD00CD4A48 /* NewTasKModel.swift */,
 				14AEE5DE2DD2145200720572 /* Chat.swift */,
 				14AEE5E42DD36A7400720572 /* Group.swift */,
 				14AEE5DC2DD20B3800720572 /* ChatPerson.swift */,
@@ -276,7 +291,9 @@
 				1435F91B2DCA062200FC012D /* FontSizeWithWeight.swift in Sources */,
 				14AEE5D62DD1F86900720572 /* MessageView.swift in Sources */,
 				1435F91D2DCA067500FC012D /* FontWithLineHeight.swift in Sources */,
+				1458D8CD2DD5E0FD00CD4A48 /* NewTask.swift in Sources */,
 				14A75C062DC8D4370014CB23 /* Splash.swift in Sources */,
+				1458D8D52DD617CD00CD4A48 /* NotificationModel.swift in Sources */,
 				1435F9212DCA406300FC012D /* CheckBoxView.swift in Sources */,
 				14AEE5D92DD1FE0400720572 /* Message.swift in Sources */,
 				1435F9232DCA42D800FC012D /* RadioBoxView.swift in Sources */,
@@ -285,8 +302,10 @@
 				1435F91F2DCA24BB00FC012D /* Signup.swift in Sources */,
 				14A75C122DC902C80014CB23 /* Logo.swift in Sources */,
 				14AEE5E92DD3B69000720572 /* TaskForTheDay.swift in Sources */,
+				1458D8CF2DD5E1CD00CD4A48 /* NewTasKModel.swift in Sources */,
 				14AEE5DB2DD209E800720572 /* ChatView.swift in Sources */,
 				1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */,
+				1458D8D32DD6175500CD4A48 /* Notification.swift in Sources */,
 				1435F9252DCA5A7800FC012D /* HomeView.swift in Sources */,
 				14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */,
 				14AEE5E12DD218A900720572 /* ChatItemView.swift in Sources */,
@@ -296,6 +315,7 @@
 				14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */,
 				14AEE5E72DD37F3600720572 /* Schedule.swift in Sources */,
 				14AEE5D42DD1EF4600720572 /* MsgButton.swift in Sources */,
+				1458D8D12DD6141B00CD4A48 /* NotificationView.swift in Sources */,
 				14AEE5EB2DD3B72F00720572 /* TaskForDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

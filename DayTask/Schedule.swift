@@ -115,6 +115,26 @@ struct Schedule: View {
       }
       .padding()
       .frame(maxWidth: .infinity, alignment: .leading)
+      .navigationTitle("Schedule")
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarBackButtonHidden(true)
+      .toolbar(content: {
+        ToolbarItem(placement: .topBarLeading) {
+          Button(action: {}) {
+            Image(systemName: "arrow.backward")
+              .foregroundStyle(.white)
+              .font(.system(size: 24))
+          }
+        }
+        
+        ToolbarItem {
+          Button(action: {}) {
+            Image(systemName: "plus.app")
+              .foregroundStyle(.white)
+              .font(.system(size: 24))
+          }
+        }
+      })
     }
   }
 }
