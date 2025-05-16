@@ -77,7 +77,7 @@ struct NewTask: View {
   }
 }
 
-struct FormTextField: View {
+private struct FormTextField: View {
   var label: String
   var placeholder: String
   @Binding var value: String
@@ -99,7 +99,7 @@ struct FormTextField: View {
   }
 }
 
-struct FormTextEditor: View {
+private struct FormTextEditor: View {
   var label: String
 //  var placeholder: String
   @Binding var value : String
@@ -122,7 +122,7 @@ struct FormTextEditor: View {
   }
 }
 
-struct TeamMember: View {
+private struct TeamMember: View {
   var image: String
   var name: String
   var body: some View {

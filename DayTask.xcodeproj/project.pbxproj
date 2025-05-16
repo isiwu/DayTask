@@ -45,6 +45,8 @@
 		14AEE5EB2DD3B72F00720572 /* TaskForDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AEE5EA2DD3B72F00720572 /* TaskForDay.swift */; };
 		14C5F05A2DD0E89B001FB690 /* TaskDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5F0592DD0E89B001FB690 /* TaskDetail.swift */; };
 		14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5F05B2DD0F5B2001FB690 /* CircularProgressView.swift */; };
+		14DDA71F2DD74A07006B8442 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DDA71E2DD74A07006B8442 /* ProfileView.swift */; };
+		14DDA7242DD785CF006B8442 /* ProfileFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DDA7232DD785CF006B8442 /* ProfileFormModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		14AEE5EA2DD3B72F00720572 /* TaskForDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskForDay.swift; sourceTree = "<group>"; };
 		14C5F0592DD0E89B001FB690 /* TaskDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetail.swift; sourceTree = "<group>"; };
 		14C5F05B2DD0F5B2001FB690 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		14DDA71E2DD74A07006B8442 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		14DDA7232DD785CF006B8442 /* ProfileFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFormModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 		14A75BF62DC8CCA50014CB23 /* DayTask */ = {
 			isa = PBXGroup;
 			children = (
+				14DDA7222DD7855E006B8442 /* ViewModel */,
 				14AEE5D72DD1FDE200720572 /* Model */,
 				14A75C152DC91AEB0014CB23 /* Util */,
 				14A75C102DC9029C0014CB23 /* Components */,
@@ -137,6 +142,7 @@
 				14AEE5E22DD369A500720572 /* MessageGroups.swift */,
 				14AEE5E62DD37F3600720572 /* Schedule.swift */,
 				1458D8CC2DD5E0FD00CD4A48 /* NewTask.swift */,
+				14DDA71E2DD74A07006B8442 /* ProfileView.swift */,
 				1458D8D02DD6141B00CD4A48 /* NotificationView.swift */,
 				14AEE5D12DD1EE2100720572 /* MessagesView.swift */,
 				14AEE5DA2DD209E800720572 /* ChatView.swift */,
@@ -209,6 +215,14 @@
 				14AEE5EA2DD3B72F00720572 /* TaskForDay.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		14DDA7222DD7855E006B8442 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				14DDA7232DD785CF006B8442 /* ProfileFormModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +300,7 @@
 			files = (
 				14AEE5D22DD1EE2100720572 /* MessagesView.swift in Sources */,
 				14AEE5DD2DD20B3800720572 /* ChatPerson.swift in Sources */,
+				14DDA7242DD785CF006B8442 /* ProfileFormModel.swift in Sources */,
 				14A75BFA2DC8CCA50014CB23 /* ContentView.swift in Sources */,
 				14AEE5E52DD36A7400720572 /* Group.swift in Sources */,
 				1435F91B2DCA062200FC012D /* FontSizeWithWeight.swift in Sources */,
@@ -310,6 +325,7 @@
 				14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */,
 				14AEE5E12DD218A900720572 /* ChatItemView.swift in Sources */,
 				14AEE5DF2DD2145200720572 /* Chat.swift in Sources */,
+				14DDA71F2DD74A07006B8442 /* ProfileView.swift in Sources */,
 				14A75C192DC941930014CB23 /* ButtonView.swift in Sources */,
 				14C5F05A2DD0E89B001FB690 /* TaskDetail.swift in Sources */,
 				14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */,

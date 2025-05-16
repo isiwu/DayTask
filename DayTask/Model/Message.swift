@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct Message {
-  var id = UUID()
+struct Message: Identifiable, Hashable {
+//  var id = UUID()
   var name: String
   var text: String
   var image: String
+  
+  var id: Int {
+    hashValue
+  }
 }
