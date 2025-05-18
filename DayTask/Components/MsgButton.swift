@@ -9,8 +9,11 @@ import SwiftUI
 
 struct MsgButton: View {
   var text: String
+  var action: () -> Void
   var body: some View {
-    Button(action: {}) {
+    Button(action: {
+      action()
+    }) {
       Text(text)
         .fontWeight(.medium)
         .font(.custom("Inter-Regular", size: 18))
@@ -19,5 +22,9 @@ struct MsgButton: View {
 }
 
 #Preview {
-    MsgButton(text: "Me")
+  MsgButton(text: "Me", action: action)
+}
+
+func action() {
+  
 }

@@ -26,17 +26,17 @@ struct MessageGroups: View {
         .ignoresSafeArea()
       
       VStack {
-        HStack {
-          MsgButton(text: "Chat")
-            .frame(width: 170, height: 50)
-            .foregroundStyle(.white)
-            .background(.daytaskTab)
-          Spacer()
-          MsgButton(text: "Groups")
-            .frame(width: 170, height: 53)
-            .foregroundStyle(.black)
-            .background(.dayTaskY)
-        }
+//        HStack {
+//          MsgButton(text: "Chat")
+//            .frame(width: 170, height: 50)
+//            .foregroundStyle(.white)
+//            .background(.daytaskTab)
+//          Spacer()
+//          MsgButton(text: "Groups")
+//            .frame(width: 170, height: 53)
+//            .foregroundStyle(.black)
+//            .background(.dayTaskY)
+//        }
         
         ScrollView {
           VStack(alignment: .leading, spacing: 30) {
@@ -62,30 +62,6 @@ struct MessageGroups: View {
           .padding(.top, 30)
           .frame(maxWidth: .infinity, alignment: .leading)
         }
-        
-//        List {
-//          ForEach(groups) { group in
-//            HStack(spacing: 15) {
-//              Image(group.logo)
-//              
-//              VStack(alignment: .leading) {
-//                Text(group.name)
-//                  .fontWeight(.semibold)
-//                  .font(.custom("Inter-Bold", size: 24))
-//                  .foregroundStyle(.white)
-//                
-//                HStack(spacing: -5) {
-//                  ForEach(group.members.indices, id: \.self) { index in
-//                    Image(group.members[index])
-//                  }
-//                }
-//              }
-//            }
-//            .background(.dayTask)
-//          }
-//        }
-//        .listStyle(.plain)
-//        .background(.dayTask)
       }
       .padding(.top, 20)
       .padding(.horizontal, 18)

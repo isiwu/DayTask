@@ -11,7 +11,7 @@ import SwiftUI
 struct DayTaskApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }

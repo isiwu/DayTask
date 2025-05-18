@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatView: View {
   @Environment(\.dismiss) var dismiss
   @State private var chat = ""
-  var person: ChatPerson
+  var person = ChatPerson(name: "Olivia Anna", image: "msg1")
   var chats = [
     Chat(type: .text, sender: .user, seen: true, body: "Hi, please check the new task."),
     Chat(type: .text, sender: .owner, seen: true, body: "Hi, please check the new task. And me"),
@@ -42,6 +42,7 @@ struct ChatView: View {
       }
       .padding()
       .navigationBarBackButtonHidden(true)
+      .navigationBarTitleDisplayMode(.inline)
       .toolbar(content: {
         ToolbarItem(placement: .topBarLeading) {
           Button(action: {
@@ -53,11 +54,11 @@ struct ChatView: View {
           }
         }
         
-        ToolbarItem {
+        ToolbarItem(placement: .principal) {
           HStack {
             Image(person.image)
             
-            VStack {
+            VStack(alignment: .leading) {
               Text(person.name)
                 .fontWeight(.semibold)
                 .font(.custom("Inter-regular", size: 14))
@@ -67,8 +68,6 @@ struct ChatView: View {
                 .foregroundStyle(.daytaskG)
             }
           }
-          .frame(maxWidth: .infinity)
-          .padding(.horizontal, 60)
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -82,11 +81,11 @@ struct ChatView: View {
         ToolbarItem(placement: .bottomBar) {
           HStack {
             HStack {
-              Button(action: {}) {
-                Image("elementequal")
-              }
-              TextField("", text: $chat)
-                .foregroundStyle(.white)
+              Image("elementequal")
+              
+              TextField("", text: $chat, prompt: Text("Type a message").foregroundStyle(.daytaskG))
+//                .padding(.vertical, 2)
+              
               Button(action: {}) {
                 Image(systemName: "paperplane")
                   .rotationEffect(.degrees(45))
@@ -97,10 +96,6 @@ struct ChatView: View {
             .background(.daytaskTab)
             
             Spacer()
-            
-//            Image(systemName: "microphone")
-//              .foregroundStyle(.dayTaskY)
-//              .background(.daytaskTab)
             
             Button(action: {}) {
               Image("microphone2")

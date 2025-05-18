@@ -27,4 +27,8 @@ class ProfileFormModel: ObservableObject {
     self.privacy = privacy
     self.setting = setting
   }
+  
+  convenience init() {
+    self.init(image: UIImage(), fullName: "", email: "", pwd: "", task: "", privacy: "", setting: "")
+  }
 }

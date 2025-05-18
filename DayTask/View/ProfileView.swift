@@ -104,7 +104,6 @@ struct ProfileView: View {
         }
       }
       .padding(.horizontal)
-      .navigationTitle("Profile")
       .navigationBarTitleDisplayMode(.inline)
       .navigationBarBackButtonHidden(true)
       .toolbar(content: {
@@ -115,10 +114,23 @@ struct ProfileView: View {
               .font(.system(size: 24))
           }
         }
+        
+        ToolbarItem(placement: .principal) {
+          Text("Profile")
+            .font(.title)
+            .foregroundStyle(.white)
+        }
       })
     }
   }
+  
+  init() {
+    let viewModel = ProfileFormModel()
+    viewModel.image = UIImage(named: "notif2")!
+    profileModel = viewModel
+  }
 }
+
 
 private struct FormTextField: View {
   var leftIcon: String
@@ -247,6 +259,7 @@ private struct FormSelectField: View {
 
 #Preview {
   NavigationStack {
-    ProfileView(profileModel: ProfileFormModel(image: UIImage(), fullName: "", email: "", pwd: "", task: "", privacy: "", setting: ""))
+//    ProfileView(profileModel: ProfileFormModel(image: UIImage(), fullName: "", email: "", pwd: "", task: "", privacy: "", setting: ""))
+    ProfileView()
   }
 }

@@ -8,71 +8,81 @@
 import SwiftUI
 
 struct NewTask: View {
-  @State private var value = "Task Title"
+  @State private var value = ""
   @State private var valueEditor = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+  @Environment(\.dismiss) var dismiss
   var body: some View {
-    ZStack {
-      Color.dayTask
-        .ignoresSafeArea()
-      
-      VStack {
-        VStack(spacing: 30) {
-          FormTextField(label: "Task Title", placeholder: "Hi-Fi Wireframe", value: $value)
-          
-          FormTextEditor(label: "Task Details", value: $valueEditor)
-          
-          VStack(alignment: .leading) {
-            Text("Add team members")
-              .fontWeight(.semibold)
-              .font(.custom("Inter-Bold", size: 25))
-              .foregroundStyle(.white)
+    NavigationStack {
+      ZStack {
+        Color.dayTask
+          .ignoresSafeArea()
+        
+        VStack {
+          VStack(spacing: 30) {
+            FormTextField(label: "Task Title", placeholder: "Hi-Fi Wireframe", value: $value)
             
-            HStack {
-              ScrollView(.horizontal) {
-                HStack {
-                  TeamMember(image: "member", name: "Robert")
-                  TeamMember(image: "member0", name: "Robert")
-                }
-              }
-              .scrollIndicators(.hidden, axes: .horizontal)
+            FormTextEditor(label: "Task Details", value: $valueEditor)
+            
+            VStack(alignment: .leading) {
+              Text("Add team members")
+                .fontWeight(.semibold)
+                .font(.custom("Inter-Bold", size: 25))
+                .foregroundStyle(.white)
               
-              Image(systemName: "plus.app")
-                .font(.system(size: 28))
-                .padding()
-                .background(.dayTaskY)
+              HStack {
+                ScrollView(.horizontal) {
+                  HStack {
+                    TeamMember(image: "member", name: "Robert")
+                    TeamMember(image: "member0", name: "Robert")
+                  }
+                }
+                .scrollIndicators(.hidden, axes: .horizontal)
+                
+                Image(systemName: "plus.app")
+                  .font(.system(size: 28))
+                  .padding()
+                  .background(.dayTaskY)
+              }
+            }
+            
+            VStack(alignment: .leading) {
+              Text("Time & Date")
+                .fontWeight(.black)
+                .font(.custom("Inter-Bold", size: 25))
+                .foregroundStyle(.white)
+              
+              HStack {
+                TimeView(image: "clock", content: "10:30 AM")
+                TimeView(image: "calendar", content: "15/11/2022")
+              }
             }
           }
           
-          VStack(alignment: .leading) {
-            Text("Time & Date")
-              .fontWeight(.black)
-              .font(.custom("Inter-Bold", size: 25))
-              .foregroundStyle(.white)
-            
-            HStack {
-              TimeView(image: "clock", content: "10:30 AM")
-              TimeView(image: "calendar", content: "15/11/2022")
+          Spacer()
+          
+          ButtonView(buttonText: "Create")
+        }
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+          ToolbarItem(placement: .topBarLeading) {
+            Button(action: {
+              dismiss()
+            }) {
+              Image(systemName: "arrow.backward")
+                .foregroundStyle(.white)
+                .font(.system(size: 24))
             }
           }
-        }
-        
-        Spacer()
-        
-        ButtonView(buttonText: "Create")
-      }
-      .padding()
-      .navigationTitle("Create New Task")
-      .navigationBarTitleDisplayMode(.inline)
-      .navigationBarBackButtonHidden(true)
-      .toolbar(content: {
-        ToolbarItem(placement: .topBarLeading) {
-          Button(action: {}) {
-            Image(systemName: "arrow.backward")
+          
+          ToolbarItem(placement: .principal) {
+            Text("Create New Task")
               .foregroundStyle(.white)
               .font(.system(size: 24))
           }
-        }
-      })
+        })
+      }
     }
   }
 }
@@ -88,7 +98,7 @@ private struct FormTextField: View {
         .font(.custom("Inter-Bold", size: 25))
         .foregroundStyle(.white)
       
-      TextField(placeholder, text: $value)
+      TextField("", text: $value, prompt: Text(placeholder).foregroundStyle(.white))
         .foregroundStyle(.white)
         .font(.system(size: 20))
         .fontWeight(.regular)
@@ -172,7 +182,5 @@ struct TimeView: View {
 }
 
 #Preview {
-  NavigationStack {
-    NewTask()
-  }
+  NewTask()
 }

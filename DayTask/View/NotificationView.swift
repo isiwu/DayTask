@@ -21,43 +21,50 @@ struct NotificationView: View {
   @State private var newNotifications = [NotificationModel]()
   @State private var earlierNotifications = [NotificationModel]()
   var body: some View {
-    ZStack {
-      Color.dayTask
-        .ignoresSafeArea()
-      
-      List {
-        ForEach(sections, id: \.self) { section in
-          Section(header: Text(section.description.capitalized).font(.system(size: 30)).foregroundStyle(.white)) {
-            ForEach(notifications) { notification in
-              if notification.status.rawValue.lowercased() == section.description.lowercased() {
-                Notification(notification: notification)
-                  .listRowSeparator(.hidden)
-                  .listRowBackground(Color(.dayTask))
+    NavigationStack {
+      ZStack {
+        Color.dayTask
+          .ignoresSafeArea()
+        
+        List {
+          ForEach(sections, id: \.self) { section in
+            Section(header: Text(section.description.capitalized).font(.system(size: 30)).foregroundStyle(.white)) {
+              ForEach(notifications) { notification in
+                if notification.status.rawValue.lowercased() == section.description.lowercased() {
+                  Notification(notification: notification)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color(.dayTask))
+                }
               }
             }
           }
         }
-      }
-      .listStyle(.plain)
-      .listRowSpacing(10)
+        .listStyle(.plain)
+        .listRowSpacing(10)
 
-      .onAppear(perform: {
-        newNotifications = getNewNotifications()
-        earlierNotifications = getEarlierNotifications()
-      })
-      
-      .navigationTitle("Notifications")
-      .navigationBarTitleDisplayMode(.inline)
-      .navigationBarBackButtonHidden(true)
-      .toolbar(content: {
-        ToolbarItem(placement: .topBarLeading) {
-          Button(action: {}) {
-            Image(systemName: "arrow.backward")
+        .onAppear(perform: {
+          newNotifications = getNewNotifications()
+          earlierNotifications = getEarlierNotifications()
+        })
+        
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+//          ToolbarItem(placement: .topBarLeading) {
+//            Button(action: {}) {
+//              Image(systemName: "arrow.backward")
+//                .foregroundStyle(.white)
+//                .font(.system(size: 24))
+//            }
+//          }
+          
+          ToolbarItem(placement: .principal) {
+            Text("Notifications")
               .foregroundStyle(.white)
               .font(.system(size: 24))
           }
-        }
-      })
+        })
+      }
     }
   }
   
@@ -71,7 +78,5 @@ struct NotificationView: View {
 }
 
 #Preview {
-  NavigationStack {
-    NotificationView()
-  }
+  NotificationView()
 }
