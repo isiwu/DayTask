@@ -32,16 +32,15 @@ struct MainView: View {
         .toolbarBackground(.daytaskTab, for: .tabBar)
         .tag(2)
       
-      Text("Add")
-        .tabItem {
-          Image(systemName: "plus.app")
-            .font(.system(size: 50))
-            .padding()
-            .foregroundStyle(.dayTaskY)
-            .tint(.dayTaskY)
-            .background(.dayTaskY)
-        }
-        .tag(3)
+//      Spacer()
+//        .tabItem {
+//          Image(systemName: "plus.app")
+//            .padding(.all, 8)
+//            .background(.dayTaskY)
+//            .font(.system(size: 30))
+//            .frame(width: 50, height: 50)
+//        }
+//        .tag(3)
       
       ScheduleView()
         .tabItem {
@@ -62,7 +61,6 @@ struct MainView: View {
         .tag(5)
     }
     .tint(.dayTaskY)
-//    .background(.dayTask)
   }
 }
 

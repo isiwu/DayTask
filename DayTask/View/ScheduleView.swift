@@ -118,38 +118,36 @@ struct ScheduleView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar(content: {
-  //        ToolbarItem(placement: .topBarLeading) {
-  //          Button(action: {}) {
-  //            Image(systemName: "arrow.backward")
-  //              .foregroundStyle(.white)
-  //              .font(.system(size: 24))
-  //          }
-  //        }
-          
-          ToolbarItem(placement: .principal) {
-            Text("Schedule")
-              .font(.title)
-              .foregroundStyle(.white)
-          }
-          
-          ToolbarItem {
-            
-            Button(action: {
-              showNewTask = true
-            }) {
-              Image(systemName: "plus.app")
-                .foregroundStyle(.white)
-                .font(.system(size: 24))
-            }
-          }
-        })
       }
-      .fullScreenCover(isPresented: $showNewTask, content: {
-        NewTask()
-    })
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarBackButtonHidden(true)
+      .toolbar(content: {
+        
+        ToolbarItem(placement: .principal) {
+          Text("Schedule")
+            .font(.title)
+            .foregroundStyle(.white)
+        }
+        
+        ToolbarItem {
+          
+//          Button(action: {
+//            showNewTask = true
+//          }) {
+//            Image(systemName: "plus.app")
+//              .foregroundStyle(.white)
+//              .font(.system(size: 24))
+//          }
+          NavigationLink(destination: NewTask()) {
+            Image(systemName: "plus.app")
+              .foregroundStyle(.white)
+              .font(.system(size: 24))
+          }
+        }
+      })
+//      .fullScreenCover(isPresented: $showNewTask, content: {
+//        NewTask()
+//    })
     }
   }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Splash: View {
+  @AppStorage(UserKeys.hasSeenSplash.rawValue) var hasSeenSplash = false
   var body: some View {
     ZStack {
       Color.dayTask
@@ -47,13 +48,17 @@ struct Splash: View {
             .fontWeight(.semibold)
             .foregroundStyle(.dayTaskY)
         }
-        .padding(.top)
+//        .padding(.top, 8)
         
-        ButtonView(buttonText: "Let's Start")
+        ButtonView(buttonText: "Let's Start", action: letStart)
           .padding(.bottom, 30)
       }
       .padding(.horizontal, 35)
     }
+  }
+  
+  func letStart() {
+    hasSeenSplash = true
   }
 }
 

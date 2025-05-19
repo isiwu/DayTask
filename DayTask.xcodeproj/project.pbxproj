@@ -20,6 +20,10 @@
 		1458D8D52DD617CD00CD4A48 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458D8D42DD617CD00CD4A48 /* NotificationModel.swift */; };
 		14606EEE2DD9E56D00FCDE00 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14606EED2DD9E56D00FCDE00 /* MainView.swift */; };
 		1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471685A2DCCA06B00C94582 /* FontFamily.swift */; };
+		1481CF372DDB671A001A1CAA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1481CF362DDB671A001A1CAA /* UserDefaults.swift */; };
+		1481CF392DDB6BED001A1CAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1481CF382DDB6BED001A1CAA /* ContentView.swift */; };
+		1481CF3B2DDB9014001A1CAA /* SignInFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1481CF3A2DDB9014001A1CAA /* SignInFormModel.swift */; };
+		1481CF3D2DDB9164001A1CAA /* SignUpFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1481CF3C2DDB9164001A1CAA /* SignUpFormModel.swift */; };
 		14A75BF82DC8CCA50014CB23 /* DayTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */; };
 		14A75BFC2DC8CCA80014CB23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A75BFB2DC8CCA80014CB23 /* Assets.xcassets */; };
 		14A75BFF2DC8CCA80014CB23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A75BFE2DC8CCA80014CB23 /* Preview Assets.xcassets */; };
@@ -63,6 +67,10 @@
 		1458D8D42DD617CD00CD4A48 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		14606EED2DD9E56D00FCDE00 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1471685A2DCCA06B00C94582 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
+		1481CF362DDB671A001A1CAA /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		1481CF382DDB6BED001A1CAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1481CF3A2DDB9014001A1CAA /* SignInFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormModel.swift; sourceTree = "<group>"; };
+		1481CF3C2DDB9164001A1CAA /* SignUpFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormModel.swift; sourceTree = "<group>"; };
 		14A75BF42DC8CCA50014CB23 /* DayTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A75BF72DC8CCA50014CB23 /* DayTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskApp.swift; sourceTree = "<group>"; };
 		14A75BFB2DC8CCA80014CB23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				14606EED2DD9E56D00FCDE00 /* MainView.swift */,
+				1481CF382DDB6BED001A1CAA /* ContentView.swift */,
 				14A75C132DC90B4D0014CB23 /* Signin.swift */,
 				1435F91E2DCA24BB00FC012D /* Signup.swift */,
 				1435F9242DCA5A7800FC012D /* HomeView.swift */,
@@ -123,6 +132,14 @@
 				14A75C052DC8D4370014CB23 /* Splash.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1481CF352DDB6681001A1CAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1481CF362DDB671A001A1CAA /* UserDefaults.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		14A75BEB2DC8CCA50014CB23 = {
@@ -169,6 +186,7 @@
 		14A75C072DC8E2C90014CB23 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1481CF352DDB6681001A1CAA /* Extensions */,
 				14A75C082DC8E2D70014CB23 /* Fonts */,
 			);
 			path = Resources;
@@ -229,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				14DDA7232DD785CF006B8442 /* ProfileFormModel.swift */,
+				1481CF3A2DDB9014001A1CAA /* SignInFormModel.swift */,
+				1481CF3C2DDB9164001A1CAA /* SignUpFormModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -317,6 +337,7 @@
 				1458D8CD2DD5E0FD00CD4A48 /* NewTask.swift in Sources */,
 				14A75C062DC8D4370014CB23 /* Splash.swift in Sources */,
 				1458D8D52DD617CD00CD4A48 /* NotificationModel.swift in Sources */,
+				1481CF392DDB6BED001A1CAA /* ContentView.swift in Sources */,
 				1435F9212DCA406300FC012D /* CheckBoxView.swift in Sources */,
 				14AEE5D92DD1FE0400720572 /* Message.swift in Sources */,
 				1435F9232DCA42D800FC012D /* RadioBoxView.swift in Sources */,
@@ -326,6 +347,7 @@
 				14A75C122DC902C80014CB23 /* Logo.swift in Sources */,
 				14AEE5E92DD3B69000720572 /* TaskForTheDay.swift in Sources */,
 				1458D8CF2DD5E1CD00CD4A48 /* NewTasKModel.swift in Sources */,
+				1481CF3B2DDB9014001A1CAA /* SignInFormModel.swift in Sources */,
 				14AEE5DB2DD209E800720572 /* ChatView.swift in Sources */,
 				1471685B2DCCA06B00C94582 /* FontFamily.swift in Sources */,
 				1458D8D32DD6175500CD4A48 /* Notification.swift in Sources */,
@@ -338,9 +360,11 @@
 				14C5F05A2DD0E89B001FB690 /* TaskDetail.swift in Sources */,
 				14C5F05C2DD0F5B2001FB690 /* CircularProgressView.swift in Sources */,
 				14AEE5E72DD37F3600720572 /* ScheduleView.swift in Sources */,
+				1481CF372DDB671A001A1CAA /* UserDefaults.swift in Sources */,
 				14AEE5D42DD1EF4600720572 /* MsgButton.swift in Sources */,
 				1458D8D12DD6141B00CD4A48 /* NotificationView.swift in Sources */,
 				14AEE5EB2DD3B72F00720572 /* TaskForDay.swift in Sources */,
+				1481CF3D2DDB9164001A1CAA /* SignUpFormModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

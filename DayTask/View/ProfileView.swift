@@ -9,38 +9,41 @@ import SwiftUI
 
 struct ProfileView: View {
   @ObservedObject var profileModel: ProfileFormModel
+  @Environment(\.dismiss) var dismiss
+  @AppStorage(UserKeys.login.rawValue) var login = false
+  @AppStorage(UserKeys.hasSeenSplash.rawValue) var hasSeenSplash = false
   
   var body: some View {
     ZStack {
       Color.dayTask
         .ignoresSafeArea()
-       
-      VStack {
-        ZStack {
-          Image("notif2")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 140, height: 140)
-            .clipShape(Circle())
-            .padding(.all, 8)
-            .overlay(content: {
-              Circle()
-                .stroke(.dayTaskY, lineWidth: 5)
-          })
-          
-          Button(action: {}) {
-            Image(systemName: "plus.app")
-              .foregroundStyle(.white)
-              .font(.system(size: 30))
-              .padding(.all, 8)
-              .background(.black)
-              .clipShape(Circle())
-          }
-          .offset(x: 40 ,y: 60)
-        }
-        .padding(.bottom, 20)
         
         ScrollView {
+          VStack {
+            ZStack {
+              Image("notif2")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140, height: 140)
+                .clipShape(Circle())
+                .padding(.all, 8)
+                .overlay(content: {
+                  Circle()
+                    .stroke(.dayTaskY, lineWidth: 5)
+              })
+              
+              Button(action: {}) {
+                Image(systemName: "plus.app")
+                  .foregroundStyle(.white)
+                  .font(.system(size: 30))
+                  .padding(.all, 8)
+                  .background(.black)
+                  .clipShape(Circle())
+              }
+              .offset(x: 40 ,y: 60)
+            }
+            .padding(.bottom, 20)
+            
           VStack {
             VStack(spacing: 15) {
               FormTextField(leftIcon: "useradd", prompt: "Fazil Laghari", rightIcon: "edit1", value: $profileModel.fullName)
@@ -86,7 +89,7 @@ struct ProfileView: View {
             .padding(.bottom, 50)
             
             Button(action: {
-              
+              logoutAction()
             }) {
               HStack {
                 Image("logoutcurve")
@@ -104,30 +107,37 @@ struct ProfileView: View {
         }
       }
       .padding(.horizontal)
-      .navigationBarTitleDisplayMode(.inline)
-      .navigationBarBackButtonHidden(true)
-      .toolbar(content: {
-        ToolbarItem(placement: .topBarLeading) {
-          Button(action: {}) {
-            Image(systemName: "arrow.backward")
-              .foregroundStyle(.white)
-              .font(.system(size: 24))
-          }
-        }
-        
-        ToolbarItem(placement: .principal) {
-          Text("Profile")
-            .font(.title)
-            .foregroundStyle(.white)
-        }
-      })
     }
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationBarBackButtonHidden(true)
+    .toolbar(content: {
+      ToolbarItem(placement: .topBarLeading) {
+        Button(action: {
+          dismiss()
+        }) {
+          Image(systemName: "arrow.backward")
+            .foregroundStyle(.white)
+            .font(.system(size: 24))
+        }
+      }
+      
+      ToolbarItem(placement: .principal) {
+        Text("Profile")
+          .font(.title)
+          .foregroundStyle(.white)
+      }
+    })
   }
   
   init() {
     let viewModel = ProfileFormModel()
     viewModel.image = UIImage(named: "notif2")!
     profileModel = viewModel
+  }
+  
+  func logoutAction() {
+    hasSeenSplash = false
+    login = false
   }
 }
 

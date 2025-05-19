@@ -41,72 +41,72 @@ struct ChatView: View {
         })
       }
       .padding()
-      .navigationBarBackButtonHidden(true)
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbar(content: {
-        ToolbarItem(placement: .topBarLeading) {
-          Button(action: {
-            dismiss()
-          }) {
-            Image(systemName: "arrow.backward")
+    }
+    .navigationBarBackButtonHidden(true)
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbar(content: {
+      ToolbarItem(placement: .topBarLeading) {
+        Button(action: {
+          dismiss()
+        }) {
+          Image(systemName: "arrow.backward")
+            .foregroundStyle(.white)
+            .font(.system(size: 24))
+        }
+      }
+      
+      ToolbarItem(placement: .principal) {
+        HStack {
+          Image(person.image)
+          
+          VStack(alignment: .leading) {
+            Text(person.name)
+              .fontWeight(.semibold)
+              .font(.custom("Inter-regular", size: 14))
               .foregroundStyle(.white)
-              .font(.system(size: 24))
-          }
-        }
-        
-        ToolbarItem(placement: .principal) {
-          HStack {
-            Image(person.image)
             
-            VStack(alignment: .leading) {
-              Text(person.name)
-                .fontWeight(.semibold)
-                .font(.custom("Inter-regular", size: 14))
-                .foregroundStyle(.white)
-              
-              Text("Online")
-                .foregroundStyle(.daytaskG)
-            }
+            Text("Online")
+              .foregroundStyle(.daytaskG)
           }
         }
-        
-        ToolbarItem(placement: .topBarTrailing) {
-          HStack(spacing: 15) {
-            Image(systemName: "video")
-            Image(systemName: "phone.badge.waveform")
-          }
-          .foregroundStyle(.white)
+      }
+      
+      ToolbarItem(placement: .topBarTrailing) {
+        HStack(spacing: 15) {
+          Image(systemName: "video")
+          Image(systemName: "phone.badge.waveform")
         }
-        
-        ToolbarItem(placement: .bottomBar) {
+        .foregroundStyle(.white)
+      }
+      
+      ToolbarItem(placement: .bottomBar) {
+        HStack {
           HStack {
-            HStack {
-              Image("elementequal")
-              
-              TextField("", text: $chat, prompt: Text("Type a message").foregroundStyle(.daytaskG))
+            Image("elementequal")
+            
+            TextField("", text: $chat, prompt: Text("Type a message").foregroundStyle(.daytaskG))
 //                .padding(.vertical, 2)
-              
-              Button(action: {}) {
-                Image(systemName: "paperplane")
-                  .rotationEffect(.degrees(45))
-                  .foregroundStyle(.dayTaskY)
-              }
-            }
-            .padding()
-            .background(.daytaskTab)
-            
-            Spacer()
             
             Button(action: {}) {
-              Image("microphone2")
+              Image(systemName: "paperplane")
+                .rotationEffect(.degrees(45))
+                .foregroundStyle(.dayTaskY)
             }
-            .foregroundStyle(.dayTaskY)
-            .padding()
-            .background(.daytaskTab)
           }
+          .padding()
+          .background(.daytaskTab)
+          
+          Spacer()
+          
+          Button(action: {}) {
+            Image("microphone2")
+          }
+          .foregroundStyle(.dayTaskY)
+          .padding()
+          .background(.daytaskTab)
         }
+      }
     })
-    }
   }
 }
 

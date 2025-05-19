@@ -42,8 +42,9 @@ struct HomeView: View {
           HStack {
             HStack {
               Image("search")
-              TextField("Search", text: $search)
+              TextField("", text: $search, prompt: Text("Search").foregroundStyle(.white))
                 .foregroundStyle(.white)
+                .tint(.dayTaskY)
             }
             .padding(.vertical)
             .padding(.horizontal)

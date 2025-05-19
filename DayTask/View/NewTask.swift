@@ -63,27 +63,27 @@ struct NewTask: View {
           ButtonView(buttonText: "Create")
         }
         .padding()
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar(content: {
-          ToolbarItem(placement: .topBarLeading) {
-            Button(action: {
-              dismiss()
-            }) {
-              Image(systemName: "arrow.backward")
-                .foregroundStyle(.white)
-                .font(.system(size: 24))
-            }
-          }
-          
-          ToolbarItem(placement: .principal) {
-            Text("Create New Task")
-              .foregroundStyle(.white)
-              .font(.system(size: 24))
-          }
-        })
       }
     }
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationBarBackButtonHidden(true)
+    .toolbar(content: {
+      ToolbarItem(placement: .topBarLeading) {
+        Button(action: {
+          dismiss()
+        }) {
+          Image(systemName: "arrow.backward")
+            .foregroundStyle(.white)
+            .font(.system(size: 24))
+        }
+      }
+      
+      ToolbarItem(placement: .principal) {
+        Text("Create New Task")
+          .foregroundStyle(.white)
+          .font(.system(size: 24))
+      }
+    })
   }
 }
 
@@ -182,5 +182,7 @@ struct TimeView: View {
 }
 
 #Preview {
-  NewTask()
+  NavigationStack {
+    NewTask()
+  }
 }

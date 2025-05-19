@@ -11,7 +11,17 @@ import SwiftUI
 struct DayTaskApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
         }
     }
+  
+  init() {
+    let navbarAppearance = UINavigationBarAppearance()
+//    navbarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//    navbarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    navbarAppearance.backgroundColor = UIColor(Color.dayTask)
+    UINavigationBar.appearance().standardAppearance = navbarAppearance
+    UINavigationBar.appearance().compactAppearance = navbarAppearance
+    UINavigationBar.appearance().scrollEdgeAppearance = navbarAppearance
+  }
 }

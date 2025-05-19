@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ButtonView: View {
   var buttonText: String
+  var action: (() -> Void)?
   var body: some View {
-    Button(action: {}) {
+    Button(action: {
+      self.action?()
+    }) {
       Text(buttonText)
         .font(.custom("Inter-Bold", size: 25))
         .foregroundStyle(.black)

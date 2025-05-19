@@ -31,9 +31,16 @@ struct NotificationView: View {
             Section(header: Text(section.description.capitalized).font(.system(size: 30)).foregroundStyle(.white)) {
               ForEach(notifications) { notification in
                 if notification.status.rawValue.lowercased() == section.description.lowercased() {
-                  Notification(notification: notification)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color(.dayTask))
+                  ZStack {
+                    NavigationLink(destination: ProfileView()) {
+                      EmptyView()
+                    }
+                    .opacity(0)
+                    
+                    Notification(notification: notification)
+                  }
+                  .listRowSeparator(.hidden)
+                  .listRowBackground(Color(.dayTask))
                 }
               }
             }
@@ -50,13 +57,6 @@ struct NotificationView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar(content: {
-//          ToolbarItem(placement: .topBarLeading) {
-//            Button(action: {}) {
-//              Image(systemName: "arrow.backward")
-//                .foregroundStyle(.white)
-//                .font(.system(size: 24))
-//            }
-//          }
           
           ToolbarItem(placement: .principal) {
             Text("Notifications")
