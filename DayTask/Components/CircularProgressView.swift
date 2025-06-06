@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CircularProgressView: View {
-  let progress: Int
+  var total: Int
+  var progress: Int
 
   var body: some View {
     ZStack {
@@ -17,14 +18,14 @@ struct CircularProgressView: View {
         .stroke(lineWidth: 2)
         .foregroundColor(.daytaskProgre)
       
-      Text("\(progress)%")
+      Text("\(Int((Double(progress) / Double(total)) * 100))%")
         .foregroundStyle(.white)
 
       // Foreground or the actual progress bar
       Circle()
-        .trim(from: 0.0, to: CGFloat(progress) / CGFloat(100))
-        .stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-        .foregroundColor(.dayTaskY)
+        .trim(from: 0.0, to: CGFloat(progress) / CGFloat(total))
+        .stroke(lineWidth: 3)
+        .foregroundColor(progress != 0 ? .dayTaskY : .daytaskProgre)
         .animation(.linear, value: progress)
     }
   }
@@ -32,5 +33,6 @@ struct CircularProgressView: View {
 
 
 #Preview {
-    CircularProgressView(progress: 30)
+  CircularProgressView(total: 100, progress: 30)
+    .padding(.horizontal)
 }

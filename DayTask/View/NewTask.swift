@@ -6,64 +6,86 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewTask: View {
-  @State private var value = ""
-  @State private var valueEditor = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+  @State private var addTeamMember = false
+  @State private var isSaving = false
+  @Bindable private var newTaskViewModel = NewTaskViewModel()
   @Environment(\.dismiss) var dismiss
+  @Environment(\.modelContext) var modelContext
+  
   var body: some View {
     NavigationStack {
       ZStack {
         Color.dayTask
           .ignoresSafeArea()
         
-        VStack {
-          VStack(spacing: 30) {
-            FormTextField(label: "Task Title", placeholder: "Hi-Fi Wireframe", value: $value)
-            
-            FormTextEditor(label: "Task Details", value: $valueEditor)
-            
-            VStack(alignment: .leading) {
-              Text("Add team members")
-                .fontWeight(.semibold)
-                .font(.custom("Inter-Bold", size: 25))
-                .foregroundStyle(.white)
+        ScrollView {
+          VStack {
+            VStack(spacing: 30) {
+              FormTextField(label: "Task Title", placeholder: "Hi-Fi Wireframe", value: $newTaskViewModel.title)
               
-              HStack {
-                ScrollView(.horizontal) {
-                  HStack {
-                    TeamMember(image: "member", name: "Robert")
-                    TeamMember(image: "member0", name: "Robert")
-                  }
-                }
-                .scrollIndicators(.hidden, axes: .horizontal)
+              FormTextEditor(label: "Task Details", value: $newTaskViewModel.detail)
+              
+              VStack(alignment: .leading) {
+                Text("Add team members")
+                  .fontWeight(.semibold)
+                  .font(.custom("Inter-Bold", size: 25))
+                  .foregroundStyle(.white)
                 
-                Image(systemName: "plus.app")
-                  .font(.system(size: 28))
-                  .padding()
+                HStack {
+                  ScrollView(.horizontal) {
+                    HStack {
+                      ForEach(newTaskViewModel.teams.indices, id: \.self) { (index) in
+                        TeamMemberView(team: newTaskViewModel.teams[index], deleteTeam: deleteTeam)
+                      }
+                    }
+                  }
+                  .scrollIndicators(.hidden, axes: .horizontal)
+                  
+                  Button(action: {
+                    addTeamMember.toggle()
+                  }) {
+                    Image(systemName: "plus.app")
+                      .font(.system(size: 28))
+                      .padding()
+                  }
                   .background(.dayTaskY)
+                }
+              }
+              
+              VStack(alignment: .leading) {
+                Text("Time & Date")
+                  .fontWeight(.black)
+                  .font(.custom("Inter-Bold", size: 25))
+                  .foregroundStyle(.white)
+                
+                HStack {
+                  TimeView(image: "clock", date: $newTaskViewModel.date, time: $newTaskViewModel.time)
+                  TimeView(image: "calendar", date: $newTaskViewModel.date, time: $newTaskViewModel.time)
+                }
               }
             }
             
-            VStack(alignment: .leading) {
-              Text("Time & Date")
-                .fontWeight(.black)
-                .font(.custom("Inter-Bold", size: 25))
-                .foregroundStyle(.white)
-              
-              HStack {
-                TimeView(image: "clock", content: "10:30 AM")
-                TimeView(image: "calendar", content: "15/11/2022")
-              }
+            Spacer()
+            
+            if newTaskViewModel.isSaving {
+              ButtonView(buttonText: "Create", action: createNewTask, isLoading: newTaskViewModel.isSaving)
+                .padding(.top, 70)
+            } else {
+              ButtonView(buttonText: "Create", action: createNewTask, isLoading: newTaskViewModel.isSaving)
+                .padding(.top, 70)
             }
           }
-          
-          Spacer()
-          
-          ButtonView(buttonText: "Create")
+          .padding()
         }
-        .padding()
       }
+//      .overlay(content: {
+//        if isSaving {
+//          LoadingView()
+//        }
+//      })
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
@@ -84,6 +106,42 @@ struct NewTask: View {
           .font(.system(size: 24))
       }
     })
+    .sheet(isPresented: $addTeamMember, content: {
+      AddTeamMemberView(addTeamHandler: addTeamHandler)
+    })
+  }
+  
+  private func createNewTask() {
+    newTaskViewModel.saving(isSaving: true)
+    let task = Task(title: newTaskViewModel.title, detail: newTaskViewModel.detail, dueDate: newTaskViewModel.date)
+    
+    for team in newTaskViewModel.teams {
+      let newMember = TeamMember(name: team.name, image: team.image.pngData()!, task: task)
+      
+      modelContext.insert(newMember)
+      
+      do {
+        try modelContext.save()
+      } catch  {
+        print("Error saving")
+      }
+//      try modelContext.save()
+    }
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+      newTaskViewModel.saving(isSaving: false)
+      newTaskViewModel.reset()
+    }
+  }
+  
+  private func addTeamHandler(_ team: TeamMemberViewModel) {
+    if !team.name.isEmpty {
+      newTaskViewModel.teams.append(team)
+    }
+  }
+  
+  private func deleteTeam(_ team: TeamMemberViewModel) {
+    newTaskViewModel.teams = newTaskViewModel.teams.filter{ $0.id != team.id }
   }
 }
 
@@ -105,6 +163,7 @@ private struct FormTextField: View {
         .padding(.vertical)
         .padding(.horizontal, 20)
         .background(.daytaskfield)
+        .tint(.dayTaskY)
     }
   }
 }
@@ -128,25 +187,30 @@ private struct FormTextEditor: View {
         .padding(.horizontal, 20)
         .scrollContentBackground(.hidden)
         .background(.daytaskfield)
+        .tint(.dayTaskY)
     }
   }
 }
 
-private struct TeamMember: View {
-  var image: String
-  var name: String
+private struct TeamMemberView: View {
+  var team: TeamMemberViewModel
+  var deleteTeam: (TeamMemberViewModel) -> Void
   var body: some View {
     HStack {
       HStack {
-        Image(image)
+        Image(uiImage: team.image)
           .resizable()
           .scaledToFit()
           .frame(width: 30, height: 30)
           .clipShape(Circle())
-        Text(name)
+        Text(team.name)
       }
       .padding(.trailing, 50)
-      Image(systemName: "xmark.square")
+      Button(action: {
+        deleteTeam(team)
+      }) {
+        Image(systemName: "xmark.square")
+      }
     }
     .foregroundStyle(.white)
     .font(.system(size: 24))
@@ -157,32 +221,183 @@ private struct TeamMember: View {
 
 struct TimeView: View {
   var image: String
-  var content: String
+  @Binding var date: Date
+  @Binding var time: Date
+  @State private var showDatePicker = false
+  @State private var showTimePicker = false
+  
+  let timeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "hh:mm a"
+    
+    return formatter
+  }()
+  
+  let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "dd/MM/yyyy"
+    
+    return formatter
+  }()
   var body: some View {
-    ZStack {
-      Color.dayTaskY
-      
-      Image(systemName: image)
-        .font(.system(size: 28))
-        .padding(.leading, 10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-      
-      Rectangle()
-        .fill(.daytaskfield)
-        .padding(.leading, 50)
+    HStack(spacing: -8) {
+      if image == "clock" {
+        Image(systemName: image)
+          .font(.system(size: 28))
+          .padding(.all, 12)
+          .background(.dayTaskY)
+          .onTapGesture {
+            showTimePicker.toggle()
+          }
+          .popover(isPresented: $showTimePicker, attachmentAnchor: .point(.top), content: {
+            DatePicker("", selection: $time, displayedComponents: [.hourAndMinute])
+              .datePickerStyle(.wheel)
+              .frame(minWidth: 300, maxHeight: 400)
+              .presentationCompactAdaptation(.popover)
+              .onChange(of: time) { _, _ in
+                showTimePicker.toggle()
+              }
+          })
 
-      Text(content)
-        .padding(.leading, 35)
-        .padding(.vertical)
-        .font(.system(size: 20))
-        .foregroundStyle(.white)
+
+        Text(timeFormatter.string(from: time))
+          .font(.system(size: 20))
+          .foregroundStyle(.white)
+          .padding(.vertical)
+          .padding(.trailing)
+          .padding(.leading, 10)
+          .background(.daytaskfield)
+      } else {
+        Image(systemName: image)
+          .font(.system(size: 28))
+          .padding(.all, 12)
+          .background(.dayTaskY)
+          .onTapGesture {
+            showDatePicker.toggle()
+          }
+          .popover(isPresented: $showDatePicker, attachmentAnchor: .point(.topLeading), content: {
+            DatePicker("", selection: $date, displayedComponents: [.date])
+              .datePickerStyle(.graphical)
+              .frame(minWidth: 300, maxHeight: 400)
+              .presentationCompactAdaptation(.popover)
+              .onChange(of: date) { _, _ in
+                showDatePicker.toggle()
+              }
+          })
+
+
+        Text(dateFormatter.string(from: date))
+          .font(.system(size: 20))
+          .foregroundStyle(.white)
+          .padding(.vertical)
+          .padding(.trailing)
+          .padding(.leading, 4)
+          .background(.daytaskfield)
+      }
     }
     .frame(maxWidth: .infinity, maxHeight: 50)
   }
 }
 
-#Preview {
-  NavigationStack {
-    NewTask()
+private struct AddTeamMemberView: View {
+  var addTeamHandler: ((TeamMemberViewModel) -> Void)?
+  @State private var memberName: String = ""
+  @State private var image: UIImage = UIImage(named: "notif2")!
+  @State private var avatarItem: PhotosPickerItem?
+  @Environment(\.dismiss) var dismiss
+  var body: some View {
+    NavigationStack {
+      VStack {
+        ZStack {
+          Image(uiImage: image)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 140, height: 140)
+            .clipShape(Circle())
+            .padding(.all, 8)
+            .overlay(content: {
+              Circle()
+                .stroke(.dayTaskY, lineWidth: 5)
+          })
+          
+          PhotosPicker(selection: $avatarItem, matching: .images) {
+            Image(systemName: "plus.app")
+              .foregroundStyle(.white)
+              .font(.system(size: 30))
+              .padding(.all, 8)
+              .background(.black)
+              .clipShape(Circle())
+          }
+          .offset(x: 40 ,y: 60)
+          .task(id: avatarItem, {
+            if let data = try? await avatarItem?.loadTransferable(type: Data.self
+            ) {
+              image = UIImage(data: data)!
+            }
+          })
+        }
+        .padding(.bottom, 20)
+        
+        TextField("", text: $memberName, prompt: Text("Team Member Name"))
+          .tint(.dayTaskY)
+          .padding(.vertical)
+          .padding(.horizontal, 8)
+          .overlay(content: {
+            RoundedRectangle(cornerRadius: 4)
+              .stroke(.dayTaskY, lineWidth: 3)
+          })
+        
+        VStack(alignment: .trailing) {
+          Button(action: {
+            if let addTeamHandler = addTeamHandler, !memberName.isEmpty {
+              let member = TeamMemberViewModel(name: memberName, image: image)
+              
+              // CALL HANDLER
+              addTeamHandler(member)
+              // DISMISS MODAL
+              dismiss()
+            }
+          }) {
+            Text("Add")
+              .foregroundStyle(.black)
+              .padding(.vertical)
+              .padding(.horizontal, 50)
+              .background(.dayTaskY)
+          }
+        }
+        .padding(.top, 80)
+        .frame(maxWidth: .infinity, alignment: .trailing)
+      }
+      .padding()
+      .toolbarBackground(.visible, for: .navigationBar)
+      .toolbarBackground(.white, for: .navigationBar)
+      .toolbar(content: {
+        ToolbarItem(placement: .topBarLeading) {
+          Button(action: {
+            dismiss()
+          }) {
+            Image(systemName: "xmark")
+              .font(.system(size: 15))
+              .padding(.all, 8)
+              .background(.gray)
+              .clipShape(Circle())
+              .tint(.dayTaskY)
+          }
+        }
+      })
+    }
   }
+}
+
+#Preview {
+    NavigationStack {
+      NewTask()
+        .modelContainer(previewContainer)
+    }
+}
+
+#Preview("2") {
+  AddTeamMemberView()
 }

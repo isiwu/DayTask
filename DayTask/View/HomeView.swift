@@ -6,107 +6,109 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
   @State private var search = ""
   var completedTasks: [[String: Any]] = [["task":"Real Estate Website Design", "first":true], ["task":"Finance Mobile App Design", "first": false], ["task": "Wallet Mobile App Design", "first": false]]
-  var ongoingProjects: [[String: String]] = [["name": "Mobile App Wireframe", "dueDate": "21 March", "level": "75"], ["name": "Real Estate App Design", "dueDate": "20 June", "level": "60"], ["name": "Dashboard & App Design", "dueDate": "21 March", "level": "50"]]
+  @Query var tasks: [Task]
+  
   var body: some View {
     NavigationStack {
       ZStack {
         Color.dayTask
           .ignoresSafeArea()
         
-        VStack(spacing: 30) {
-          HStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: -1) {
-              Text("Welcome Back!")
-                .fontWeight(.medium)
-    //            .font(.custom("Inter-Bold", size: 11.79))
-                .fontWithLineHeight(size: 11.79, weight: 500, lineHeight: 18.86)
-                .foregroundStyle(.dayTaskY)
-              
-              Text("Fazil Laghari")
-                .fontWeight(.semibold)
-                .font(.custom("PilatExtended-Bold", size: 22.29))
-                .foregroundStyle(.white)
+        ScrollView(showsIndicators: false) {
+          VStack(spacing: 30) {
+            HStack(alignment: .bottom) {
+              VStack(alignment: .leading, spacing: -1) {
+                Text("Welcome Back!")
+                  .fontWeight(.medium)
+      //            .font(.custom("Inter-Bold", size: 11.79))
+                  .fontWithLineHeight(size: 11.79, weight: 500, lineHeight: 18.86)
+                  .foregroundStyle(.dayTaskY)
                 
-            }
-            
-            Spacer()
-            
-            Image("home-user")
-          }
-          .padding(.top)
-          
-          HStack {
-            HStack {
-              Image("search")
-              TextField("", text: $search, prompt: Text("Search").foregroundStyle(.white))
-                .foregroundStyle(.white)
-                .tint(.dayTaskY)
-            }
-            .padding(.vertical)
-            .padding(.horizontal)
-            .background(.daytaskfield)
-            
-            Image("setting")
-  //            .padding()
-              .frame(width: 57)
-              .frame(height: 58)
-              .background(.dayTaskY)
-          }
-          
-          VStack {
-            HStack {
-              Text("Completed Tasks")
-                .foregroundStyle(.white)
-                .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
-              
-              Spacer()
-              
-              Text("See all")
-                .foregroundStyle(.dayTaskY)
-                .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
-            }
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-              HStack {
-                ForEach(completedTasks.indices, id: \.self) {index in
-                  CompletedTask(task: completedTasks[index]["task"] as! String, first: completedTasks[index]["first"] as! Bool)
-                }
-                .background(.white)
+                Text("Fazil Laghari")
+                  .fontWeight(.semibold)
+                  .font(.custom("PilatExtended-Bold", size: 22.29))
+                  .foregroundStyle(.white)
+                  
               }
-            }
-            
-          }
-          
-          VStack {
-            HStack {
-              Text("Ongoing Projects")
-                .foregroundStyle(.white)
-                .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
               
               Spacer()
               
-              Text("See all")
-                .foregroundStyle(.dayTaskY)
-                .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+              Image("home-user")
+            }
+            .padding(.top)
+            
+            HStack {
+              HStack {
+                Image("search")
+                TextField("", text: $search, prompt: Text("Search").foregroundStyle(.white))
+                  .foregroundStyle(.white)
+                  .tint(.dayTaskY)
+              }
+              .padding(.vertical)
+              .padding(.horizontal)
+              .background(.daytaskfield)
+              
+              Image("setting")
+    //            .padding()
+                .frame(width: 57)
+                .frame(height: 58)
+                .background(.dayTaskY)
             }
             
-            ScrollView(.vertical, showsIndicators: false) {
+            VStack {
+              HStack {
+                Text("Completed Tasks")
+                  .foregroundStyle(.white)
+                  .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+                
+                Spacer()
+                
+                Text("See all")
+                  .foregroundStyle(.dayTaskY)
+                  .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+              }
+              
+              ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                  ForEach(completedTasks.indices, id: \.self) {index in
+                    CompletedTask(task: completedTasks[index]["task"] as! String, first: completedTasks[index]["first"] as! Bool)
+                  }
+                  .background(.white)
+                }
+              }
+              
+            }
+            
+            VStack {
+              HStack {
+                Text("Ongoing Projects")
+                  .foregroundStyle(.white)
+                  .fontWithLineHeight(size: 20, weight: 600, lineHeight: 27.5)
+                
+                Spacer()
+                
+                Text("See all")
+                  .foregroundStyle(.dayTaskY)
+                  .fontWithLineHeight(size: 16, weight: 400, lineHeight: 27.5)
+              }
+              
               VStack(spacing: 15) {
-                ForEach(ongoingProjects.indices, id: \.self) {index in
-                  NavigationLink(destination: TaskDetail()) {
-                    OngoingProject(name: ongoingProjects[index]["name"]!, dueDate: ongoingProjects[index]["dueDate"]!, level: ongoingProjects[index]["level"]!)
+                ForEach(tasks) {task in
+                  NavigationLink(destination: TaskDetail(task: task)) {
+                    OngoingProject(task: task)
                   }
                 }
               }
+              
             }
-            
           }
+          .padding(.horizontal)
         }
-        .padding(.horizontal)
       }
     }
   }
@@ -160,13 +162,21 @@ struct CompletedTask: View {
 }
 
 struct OngoingProject: View {
-  var name: String
-  var dueDate: String
-  var level: String
+  var task: Task
+  @State private var taskTotal = 0
+  @State private var tasksCompleted = 0
+  @Query var tasks: [Task]
+  var dateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "d MMMM"
+    
+    return formatter
+  }()
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
-        Text(name)
+        Text(task.title)
           .font(.custom("PilatExtended-Bold", size: 21))
           .fontWithLineHeight(size: 21, weight: 600, lineHeight: 25.5)
           .foregroundStyle(.white)
@@ -187,19 +197,39 @@ struct OngoingProject: View {
           
           HStack {
             Text("Due on: ")
-            Text(dueDate)
+            Text(dateFormatter.string(from: task.dueDate))
           }
           .foregroundStyle(.white)
         }
         
         Spacer()
         
-        CircularProgressView(progress: Int(level)!)
+        CircularProgressView(total: taskTotal != 0 ? taskTotal : 100, progress: tasksCompleted)
           .frame(width: 59, height: 59)
       }
     }
     .padding(.all, 10)
     .background(.daytaskfield)
+    .onAppear(perform: {
+      if let tasksToDo = task.tasksToDo {
+        let tasksCompleted = tasksToDo.filter { $0.status.rawValue == "done" }
+        
+        self.taskTotal = tasksToDo.count
+        self.tasksCompleted = tasksCompleted.count
+      }
+    })
+    .onChange(of: tasks, {
+      let task = tasks.first(where: { item in
+        item.title == self.task.title
+      })
+      
+      if let tasksToDo = task?.tasksToDo {
+        let tasksCompleted = tasksToDo.filter { $0.status.rawValue == "done" }
+        
+        self.taskTotal = tasksToDo.count
+        self.tasksCompleted = tasksCompleted.count
+      }
+    })
   }
 }
 
