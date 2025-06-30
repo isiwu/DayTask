@@ -47,7 +47,8 @@ struct DayTaskApp: App {
         
     }
   
-  init() {    
+  init() { 
+//    FirebaseApp.configure()
     let navbarAppearance = UINavigationBarAppearance()
 //    navbarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 //    navbarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]

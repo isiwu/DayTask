@@ -99,30 +99,32 @@ struct TabButtons: View {
   @Binding var currentTab: Tabs
   var body: some View {
     HStack(spacing: 6) {
-      Button(action: {
-        currentTab = .home
-      }) {
-        VStack {
-          Image(currentTab.rawValue == "home" ? "home2" : "home1")
-          Text("Home")
-            .foregroundStyle(currentTab.rawValue == "home" ? .dayTaskY : .daytaskG)
-            .font(.system(size: 10))
+      HStack {
+        Button(action: {
+          currentTab = .home
+        }) {
+          VStack {
+            Image(currentTab.rawValue == "home" ? "home2" : "home1")
+            Text("Home")
+              .foregroundStyle(currentTab.rawValue == "home" ? .dayTaskY : .daytaskG)
+              .font(.system(size: 10))
+          }
+          .padding(.horizontal)
         }
-        .padding(.horizontal)
-      }
-      
-      Spacer()
-      
-      Button(action: {
-        currentTab = .chat
-      }) {
-        VStack {
-          Image(currentTab.rawValue == "chat" ? "chat2" : "chat1")
-          Text("Chat")
-            .foregroundStyle(currentTab.rawValue == "chat" ? .dayTaskY : .daytaskG)
-            .font(.system(size: 10))
+        
+        Spacer()
+        
+        Button(action: {
+          currentTab = .chat
+        }) {
+          VStack {
+            Image(currentTab.rawValue == "chat" ? "chat2" : "chat1")
+            Text("Chat")
+              .foregroundStyle(currentTab.rawValue == "chat" ? .dayTaskY : .daytaskG)
+              .font(.system(size: 10))
+          }
+          .padding(.horizontal)
         }
-        .padding(.horizontal)
       }
       
       Spacer()
@@ -137,30 +139,32 @@ struct TabButtons: View {
       
       Spacer()
       
-      Button(action: {
-        currentTab = .calendar
-      }) {
-        VStack {
-          Image(currentTab.rawValue == "calendar" ? "calendar2" : "calendar1")
-          Text("Calendar")
-            .foregroundStyle(currentTab.rawValue == "calendar" ? .dayTaskY : .daytaskG)
-            .font(.system(size: 10))
-        }
-      }
-      .padding(.horizontal)
-      
-      Spacer()
-      
-      Button(action: {
-        currentTab = .notification
-      }) {
-        VStack {
-          Image(currentTab.rawValue == "notification" ? "notification2" : "notification1")
-          Text("Notification")
-            .foregroundStyle(currentTab.rawValue == "notification" ? .dayTaskY : .daytaskG)
-            .font(.system(size: 10))
+      HStack {
+        Button(action: {
+          currentTab = .calendar
+        }) {
+          VStack {
+            Image(currentTab.rawValue == "calendar" ? "calendar2" : "calendar1")
+            Text("Calendar")
+              .foregroundStyle(currentTab.rawValue == "calendar" ? .dayTaskY : .daytaskG)
+              .font(.system(size: 10))
+          }
         }
         .padding(.horizontal)
+        
+//        Spacer()
+        
+        Button(action: {
+          currentTab = .notification
+        }) {
+          VStack {
+            Image(currentTab.rawValue == "notification" ? "notification2" : "notification1")
+            Text("Notification")
+              .foregroundStyle(currentTab.rawValue == "notification" ? .dayTaskY : .daytaskG)
+              .font(.system(size: 10))
+          }
+          .padding(.horizontal)
+        }
       }
     }
     .padding(.top)
